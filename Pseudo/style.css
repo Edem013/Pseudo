@@ -1,0 +1,185 @@
+ /* 80x25 karakter */
+	  .screen{
+		  position: relative;
+		  border: 1px solid black;
+			width: 800px;
+			font-family: courier new;
+			height: 360px;
+			font-weight: bold;
+			background-color: black;
+			color: grey;
+			text-align:left;
+			padding: 5px;
+			font-size: 16px;
+		}
+		.log{
+		  position: relative;
+		  border: 1px solid black;
+			width: 800px;
+			font-family: courier new;
+			height: 360px;
+			margin-top: 20px;
+			font-weight: bold;
+			background-color: black;
+			color: grey;
+			text-align:left;
+			padding: 5px;
+			font-size: 16px;
+			overflow: auto;
+			margin-bottom:20px;
+			height: 0px;
+			visibility:hidden;
+		}
+		.keret{
+		  float:left;
+		  border: 0px solid red;
+      width: 100%;
+		}
+		body{
+			margin: 0px 0px 0px 0px;
+			font-family: "courier new";
+		}
+		input, select{
+		  font-family: "courier new";
+			font-size: 14px;
+		}
+		.header{
+		  border-left: 1px solid #9f9f9f;;
+			background-color: #cfcfcf;
+			width: 100%;
+			height:30px;
+			float:left;
+		}
+		.main{
+		  border-left: 1px solid #9f9f9f;
+			width: 100%;
+			min-height:100px;
+			float:left;
+		}
+		.footer{
+		  border-top: 1px solid #9f9f9f;;
+			width: 100%;
+			min-height:20px;
+			float:left;
+			font-size: 12px;
+		}
+		.pop-up_keret{
+		  border: 0px solid blue;
+			position:absolute;
+			visibility:hidden;
+			width: 100%;
+			background-image:url('pics/pop_up_bg.png');
+		}
+		.pop-up{
+		  border: 0px solid red;
+			position: relative;
+		}
+		.adatszerkDiv{
+		  width:802px;
+			float:left;
+		}
+		.adatszerk{
+			width: 804px;
+			float:left;
+			margin-left: 98px;
+			margin-top:20px;
+		}
+		.adatszerk td{
+		  border: 1px solid #afafaf;
+		}
+		#adatszerkCim{
+		  background-image:url('pics/loading.gif');
+			background-repeat:no-repeat;
+			background-position:right;
+		}
+		.bridgeDiv{
+		  width:803px;
+			float:left;
+		}
+		.bridgeTable{
+		  width:800px;
+			border-collapse: collapse;
+			float:left;
+			border: 1px solid white;
+			margin-left: 100px;
+		}
+		.adatSzerkTextInput{
+		  border: 1px solid #cfcfcf;
+		}
+		.funkcioI{
+		  width: 300px;
+			margin: 0px 0px 0px 0px;
+			border: 0px solid red;
+		}
+		.azonI{
+		  width: 100px;
+			margin: 0px 0px 0px 0px;
+			border: 0px solid red;
+		}
+		.tipusI{
+		  width: 200px;
+			margin: 0px 0px 0px 0px;
+			border: 0px solid red;
+		}
+		.torlesTD{
+		  width: 20px;
+		}
+		.torles{
+		  visibility:hidden;
+		}
+		
+		.codeDiv{
+		  border: 0px solid red;
+			width:100%;
+			float: left;
+		}
+		.codeTable{
+		  width:800px;
+			border-collapse: collapse;
+			float:left;
+	    margin-left: 100px;
+			margin-top: 2px;
+			margin-bottom: 20px;
+		}
+		#codeRowIds{
+		  overflow: hidden;
+			height:162px;
+			font-size:13px;
+			border:none;
+			resize:none;
+			background-color:#cfcfcf;
+			color: #000000;
+			margin: 0;
+			padding: 0;
+			text-align:right;
+			width:48px;
+			display: block;
+			box-sizing: border-box;
+			-moz-user-select: -moz-none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+
+		}
+		.codeCode{
+		  border:none;
+			resize:none;
+			width:100%;
+			height:162px;
+			display: block;
+			margin: 0;
+			box-sizing: border-box;
+			font-size:13px;
+			background-image:url('pics/codebg.png');
+			background-position: 2px 0px;
+		}
+		.codeTable td{
+		  border: 1px solid #afafaf;
+			padding: 0px 0px 0px 0px;
+		}
+		
+		
+		
+		
+		
+		

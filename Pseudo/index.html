@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<title>My Virtual Machine</title>
+	
+	<script type="text/javascript" src="USERF.js"></script>
+	<script type="text/javascript" src="VM\P64.js"></script>
+	<script type="text/javascript" src="VM\MEM.js"></script>
+	<script type="text/javascript" src="VM\SCR.js"></script>
+	<script type="text/javascript" src="VM\COM.js"></script>
+	<script type="text/javascript" src="VM\Compiler/SCANNER.js"></script>
+	<script type="text/javascript" src="VM\Compiler/AST.js"></script>
+	<script type="text/javascript" src="VM\Compiler/PARSER.js"></script>
+	<script type="text/javascript" src="VM\Compiler/CODEGEN.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	
+	<script type="text/javascript">
+	  window.onload = function(){
+		
+	    /* trim fgv - ie miatt */
+		  if(typeof String.prototype.trim !== 'function') {
+        String.prototype.trim = function() {
+          return this.replace(/^\s+|\s+$/g, ''); 
+        }
+      }
+		  /* indexOf explorer miatt */
+		  if(!Array.indexOf){
+	      Array.prototype.indexOf = function(obj){
+	        for(var i=0; i<this.length; i++){
+	          if(this[i]==obj){
+	            return i;
+	          }
+	        }
+	        return -1;
+	      }
+	    }
+
+		  /* inicializálás */
+		  codeBox.codeUrit();
+		
+		  /* kódmezõ melletti sorszám mezõ feltöltése */
+		  codeBox.sorSzamNovel();
+
+		  document.getElementById("adatszerkCim").style.backgroundImage = "none";
+		
+		  printLog = function(mit){
+		    if (COM.LOG_ON){
+			    document.getElementById('log').innerHTML += mit+"<br>";
+				  document.getElementById('log').scrollTop=document.getElementById('log').scrollHeight;
+			  }
+		  }
+	  }
+	</script>
+	
+</head>
+
+<body>
+  <center>
+	  <div class="pop-up_keret" id="pop-up_keret">
+    <div class="pop-up" id="pop-up">
+		  <div class='screen' id='screen'></div>
+		  <div class='log' id='log'></div>
+		</div>
+		</div>
+
+	  <div style="width:1000px">
+			<div class="keret" id="keret">
+	      <div class="header">
+				</div>
+
+				<div class="main">
+				  <!-- Adatszerkezeti táblázat és -->
+					<!--   beviteli mezõ a kódnak   -->
+					
+							<div id="adatszerk" class="adatszerkDiv">
+							
+							  
+								
+					     <table class="adatszerk" id="adatSzerkTabla">
+					        <tr>
+						        <td colspan=5 align="center" id="adatszerkCim">
+										  Adatszerkezeti táblázat:
+										</td>
+									</tr>
+									<tr align="left">
+									  <td style="width:1px;">
+							        <font style="margin-left:5px;">Funkció</font>
+							      </td>
+						        <td style="width:1px;">
+							        <font style="margin-left:5px;">Azonosító</font>
+							      </td>
+						        <td style="width:1px;">
+							        <font style="margin-left:5px;">Típus</font>
+							      </td>
+							      <td>
+							        <font style="margin-left:5px;">Jelleg</font>
+							      </td>
+										<td class="torlesTD">
+										  <img src="pics/delete.png" alt="x" />
+										</td>
+						      </tr>
+									<tr align="center" id="sor0">
+									  <td><input type="text" class="funkcioI" id="funk0"  onfocus="adatSzerk.sorKijelol(0,this);" onblur="adatSzerk.sorKijelolSzunt(0);"/></td>
+										<td><input type="text" class="azonI" id="azon0"  onfocus="adatSzerk.sorKijelol(0,this);" onblur="adatSzerk.sorKijelolSzunt(0);"/></td>
+										<td>
+										  <select class="tipusI" id="tipus0" onfocus="adatSzerk.sorKijelol(0,this);" onblur="adatSzerk.sorKijelolSzunt(0);">
+											  <option></option>
+												<option>Egész</option>
+												<option>Karakter</option>
+												<option>Logikai</option>
+											</select>
+										</td>
+										<td>
+										  <input type="checkbox" id="checkI0" onfocus="adatSzerk.sorKijelol(0,this);" onclick="adatSzerk.sorKijelol(0,this);" onblur="adatSzerk.sorKijelolSzunt(0);"/>I
+											<input type="checkbox" id="checkO0" onfocus="adatSzerk.sorKijelol(0,this);" onclick="adatSzerk.sorKijelol(0,this);" onblur="adatSzerk.sorKijelolSzunt(0);" />O
+											<input type="checkbox" id="checkM0" onfocus="adatSzerk.sorKijelol(0,this);" onclick="adatSzerk.sorKijelol(0,this);" onblur="adatSzerk.sorKijelolSzunt(0);" />M
+										</td>
+										<td bgcolor="white">
+										  <img src="pics/delete.png" alt="x" onclick="adatSzerk.sorEllen(0);" id="torles0" class="torles"/>
+										</td>
+									</tr>
+					      </table>
+							</div>
+						  
+					<div class="bridgeDiv">
+					  <table class="bridgeTable">
+						<tr><td style="height:15px;border-left: 1px solid #dddddd;border-bottom: 1px solid #ddd;"></td></tr>
+						<tr><td style="height:15px;border-right: 1px solid #ddd;"></td></tr>
+						</table>
+						<br>
+					</div>
+					
+					<div class="codeDiv">
+					  <table class="codeTable">
+						  <tr>
+							  <td style="background-color:#cfcfcf;width:48px;">
+								  <textarea readonly="" onscroll="codeBox.scrolling(document.getElementById('codeCode'));" unselectable="on" wrap="off" id="codeRowIds">1.
+</textarea>
+								</td>
+								<td>
+				
+								  <textarea id="codeCode" class="codeCode" onscroll="codeBox.scrolling(this);" wrap="off" ></textarea>
+									
+								</td>
+							</tr>
+							<tr>
+							  <td colspan=2 align=left>
+								  <input value="Futtatás" type="submit" onclick="COM.run();"/>
+								</td>
+							</tr>
+						</table>
+						
+					</div>
+			
+				</div>
+
+				<div class="footer" id="footer">
+				  My Virtual Machine
+				</div>
+			</div>
+		</div>
+	</center>
+
+</body>
+</html>
