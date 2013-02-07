@@ -1,4 +1,4 @@
-﻿/*
+/*
  * AST - Absztakt Szintakszis Fa
  *       Abstact Syntax Tree
  *
